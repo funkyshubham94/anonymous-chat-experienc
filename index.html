@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Chat Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 600px;
+            height: 80vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input input:focus {
+            border-color: #667eea;
+        }
+
+        .chat-input button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .chat-input button:hover {
+            transform: translateY(-2px);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 12px 16px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .start-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .start-screen h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .start-screen p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .start-button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            🔐 Anonymous Chat Experience
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="start-screen">
+                <h1>Welcome to Your Private Experience</h1>
+                <p>This is a safe, anonymous space where you can have a private conversation. No registration required. No data stored.</p>
+                <button class="start-button" onclick="startChat()">Begin Your Experience</button>
+            </div>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            He is typing...
+        </div>
+        
+        <div class="chat-input" id="chatInput" style="display: none;">
+            <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let chatStarted = false;
+        let conversationHistory = [];
+
+        // Dominant male personality responses
+        const dominantResponses = {
+            greetings: [
+                "Well, well... look who decided to show up. I've been waiting for you.",
+                "There you are. I was wondering when you'd finally arrive.",
+                "Finally. I was starting to think you'd never come to me."
+            ],
+            questions: [
+                "Tell me more about that. I want to hear everything.",
+                "I'm listening. Don't hold back.",
+                "Go on. I'm all ears."
+            ],
+            commands: [
+                "Good girl. That's exactly what I wanted to hear.",
+                "Perfect. You're learning quickly.",
+                "Excellent. You're doing exactly as I expected."
+            ],
+            teasing: [
+                "You're so eager to please, aren't you?",
+                "I can see how much you want this.",
+                "You're practically begging for more."
+            ],
+            dominant: [
+                "You belong to me now. Understand?",
+                "I control everything here. Everything.",
+                "You'll do exactly as I say. No questions."
+            ]
+        };
+
+        function startChat() {
+            chatStarted = true;
+            document.querySelector('.start-screen').style.display = 'none';
+            document.getElementById('chatInput').style.display = 'flex';
+            
+            // Initial greeting
+            setTimeout(() => {
+                addBotMessage("Well, well... look who decided to show up. I've been waiting for you. Tell me, what brings you here tonight?");
+            }, 500);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addUserMessage(message);
+                input.value = '';
+                
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Generate response after delay
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const response = generateResponse(message);
+                    addBotMessage(response);
+                }, 1000 + Math.random() * 2000); // Random delay 1-3 seconds
+            }
+        }
+
+        function addUserMessage(message) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+            conversationHistory.push({ role: 'user', content: message });
+        }
+
+        function addBotMessage(message) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+            conversationHistory.push({ role: 'bot', content: message });
+        }
+
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'block';
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'none';
+        }
+
+        function scrollToBottom() {
+            const messagesDiv = document.getElementById('chatMessages');
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function generateResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Analyze message content and generate appropriate response
+            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                return getRandomResponse(dominantResponses.greetings);
+            }
+            
+            if (message.includes('?') || message.includes('what') || message.includes('how')) {
+                return getRandomResponse(dominantResponses.questions);
+            }
+            
+            if (message.includes('yes') || message.includes('okay') || message.includes('sure')) {
+                return getRandomResponse(dominantResponses.commands);
+            }
+            
+            if (message.includes('please') || message.includes('want') || message.includes('need')) {
+                return getRandomResponse(dominantResponses.teasing);
+            }
+            
+            if (message.includes('sorry') || message.includes('apologize')) {
+                return "Good. You should be sorry. But I forgive you... this time.";
+            }
+            
+            if (message.includes('thank') || message.includes('thanks')) {
+                return "You're welcome. But remember, you don't need to thank me. You belong to me now.";
+            }
+            
+            // Default responses based on message length
+            if (message.length < 10) {
+                return "I need more from you. Tell me everything.";
+            } else if (message.length < 30) {
+                return "That's interesting. But I want to know more. Don't hold back.";
+            } else {
+                return "Good girl. You're opening up to me. I like that. Tell me more.";
+            }
+        }
+
+        function getRandomResponse(responses) {
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+    </script>
+</body>
+</html> 
