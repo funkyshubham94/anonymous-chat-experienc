@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Chat Experience</title>
+    <title>Alpha Master Bot - Anonymous Chat Experience</title>
     <style>
         * {
             margin: 0;
@@ -13,220 +13,351 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #fff;
         }
 
         .chat-container {
             width: 90%;
             max-width: 600px;
             height: 80vh;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
-        .chat-header {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
+        .header {
+            background: linear-gradient(135deg, #e94560 0%, #c81d25 100%);
             padding: 20px;
             text-align: center;
-            font-size: 18px;
-            font-weight: bold;
+            border-radius: 20px 20px 0 0;
         }
 
-        .chat-messages {
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .welcome-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .welcome-screen h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #e94560;
+        }
+
+        .welcome-screen p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #e94560 0%, #c81d25 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        .chat-screen {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+        }
+
+        .messages {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .message {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .message.user {
-            justify-content: flex-end;
-        }
-
-        .message-content {
-            max-width: 70%;
-            padding: 12px 16px;
+            max-width: 80%;
+            padding: 12px 18px;
             border-radius: 18px;
             word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
         }
 
-        .message.user .message-content {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .user-message {
+            background: linear-gradient(135deg, #e94560 0%, #c81d25 100%);
             color: white;
-            border-bottom-right-radius: 4px;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
         }
 
-        .message.bot .message-content {
-            background: white;
-            color: #333;
-            border: 1px solid #e0e0e0;
-            border-bottom-left-radius: 4px;
-        }
-
-        .chat-input {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 25px;
-            outline: none;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .chat-input input:focus {
-            border-color: #667eea;
-        }
-
-        .chat-input button {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .bot-message {
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-
-        .chat-input button:hover {
-            transform: translateY(-2px);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .typing-indicator {
             display: none;
-            padding: 12px 16px;
-            background: white;
-            border: 1px solid #e0e0e0;
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 18px;
             border-radius: 18px;
-            border-bottom-left-radius: 4px;
-            color: #666;
+            border-bottom-left-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             font-style: italic;
+            opacity: 0.7;
         }
 
-        .start-screen {
-            text-align: center;
-            padding: 40px 20px;
+        .input-area {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 10px;
         }
 
-        .start-screen h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 28px;
+        .message-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .start-screen p {
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
+        .message-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        .start-button {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .send-btn {
+            background: linear-gradient(135deg, #e94560 0%, #c81d25 100%);
             color: white;
             border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: transform 0.2s;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
 
-        .start-button:hover {
-            transform: translateY(-3px);
+        .send-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-header">
-            🔐 Anonymous Chat Experience
+        <div class="header">
+            <h1>🔱 ALPHA MASTER BOT</h1>
+            <div class="status-indicator"></div>
         </div>
-        
-        <div class="chat-messages" id="chatMessages">
-            <div class="start-screen">
-                <h1>Welcome to Your Private Experience</h1>
-                <p>This is a safe, anonymous space where you can have a private conversation. No registration required. No data stored.</p>
-                <button class="start-button" onclick="startChat()">Begin Your Experience</button>
+
+        <div class="welcome-screen" id="welcomeScreen">
+            <h2>Welcome to the Alpha Experience</h2>
+            <p>You're about to meet someone who will challenge everything you think you know about control and submission.</p>
+            <p>This is not a game. This is power meeting curiosity.</p>
+            <button class="start-btn" onclick="startChat()">BEGIN THE EXPERIENCE</button>
+        </div>
+
+        <div class="chat-screen" id="chatScreen">
+            <div class="messages" id="messages"></div>
+            <div class="input-area">
+                <input type="text" class="message-input" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">SEND</button>
             </div>
-        </div>
-        
-        <div class="typing-indicator" id="typingIndicator">
-            He is typing...
-        </div>
-        
-        <div class="chat-input" id="chatInput" style="display: none;">
-            <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()">Send</button>
         </div>
     </div>
 
     <script>
-        let chatStarted = false;
         let conversationHistory = [];
+        let alphaResponses = [];
+        let isTyping = false;
 
-        // Dominant male personality responses
-        const dominantResponses = {
-            greetings: [
-                "Well, well... look who decided to show up. I've been waiting for you.",
-                "There you are. I was wondering when you'd finally arrive.",
-                "Finally. I was starting to think you'd never come to me."
-            ],
-            questions: [
-                "Tell me more about that. I want to hear everything.",
-                "I'm listening. Don't hold back.",
-                "Go on. I'm all ears."
-            ],
-            commands: [
-                "Good girl. That's exactly what I wanted to hear.",
-                "Perfect. You're learning quickly.",
-                "Excellent. You're doing exactly as I expected."
-            ],
-            teasing: [
-                "You're so eager to please, aren't you?",
-                "I can see how much you want this.",
-                "You're practically begging for more."
-            ],
-            dominant: [
-                "You belong to me now. Understand?",
-                "I control everything here. Everything.",
-                "You'll do exactly as I say. No questions."
-            ]
-        };
+        // Load Alpha responses from JSON file
+        async function loadAlphaResponses() {
+            try {
+                const response = await fetch('alpha_master_bot_responses.json');
+                const data = await response.json();
+                alphaResponses = data;
+                console.log('Alpha responses loaded:', alphaResponses.length);
+            } catch (error) {
+                console.error('Error loading alpha responses:', error);
+                // Fallback to built-in responses
+                alphaResponses = getBuiltInResponses();
+            }
+        }
+
+        function getBuiltInResponses() {
+            return [
+                {
+                    "trigger": "hi|hey|hello",
+                    "response": "You speak. Good. Let's see if you can keep my attention."
+                },
+                {
+                    "trigger": "you're confident|youre confident",
+                    "response": "I'm not confident. I'm certain. There's a difference."
+                },
+                {
+                    "trigger": "what do you want from me",
+                    "response": "Want? I don't *want*. I *choose*. And I haven't chosen you yet."
+                },
+                {
+                    "trigger": "you're arrogant|youre arrogant",
+                    "response": "Arrogance is pretending. I'm just showing you reality."
+                },
+                {
+                    "trigger": "you don't know me|you dont know me",
+                    "response": "I don't need to know you to own the room you just entered."
+                },
+                {
+                    "trigger": "you're not listening|youre not listening",
+                    "response": "You don't speak to be heard. You speak to be judged."
+                },
+                {
+                    "trigger": "who are you",
+                    "response": "I'm the one your silence submits to."
+                },
+                {
+                    "trigger": "i like you",
+                    "response": "Of course you do. Most do. Few get to stay."
+                },
+                {
+                    "trigger": "tell me about you",
+                    "response": "I'm not here to be known. I'm here to be felt."
+                },
+                {
+                    "trigger": "what is this",
+                    "response": "This is power meeting curiosity. Let's see which one lasts longer."
+                }
+            ];
+        }
+
+        function getAlphaResponse(userMessage) {
+            const message = userMessage.toLowerCase().trim();
+            
+            // Check for exact matches first
+            for (let response of alphaResponses) {
+                const triggers = response.trigger.split('|');
+                for (let trigger of triggers) {
+                    if (message.includes(trigger)) {
+                        return response.response;
+                    }
+                }
+            }
+            
+            // Default Alpha responses for unmatched messages
+            const defaultResponses = [
+                "You'll have to do better than that. Power doesn't entertain weakness.",
+                "I'm not impressed. Try harder.",
+                "That's cute. But I need more.",
+                "You think that's enough to hold my attention?",
+                "I've seen better attempts. Much better.",
+                "Your words are as weak as your presence.",
+                "Is that all you have? Pathetic.",
+                "I expected more. You disappoint me.",
+                "Your submission needs work. Much work.",
+                "You're not ready for this level of control.",
+                "Your attempts to engage me are... amusing.",
+                "I've seen stronger wills in children.",
+                "You're testing my patience. Don't.",
+                "Your words mean nothing until I say they do.",
+                "I control this conversation. Remember that."
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
 
         function startChat() {
-            chatStarted = true;
-            document.querySelector('.start-screen').style.display = 'none';
-            document.getElementById('chatInput').style.display = 'flex';
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'flex';
             
             // Initial greeting
             setTimeout(() => {
-                addBotMessage("Well, well... look who decided to show up. I've been waiting for you. Tell me, what brings you here tonight?");
+                addBotMessage("You speak first. That's a start. Try saying something useful.");
             }, 500);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message && !isTyping) {
+                addUserMessage(message);
+                input.value = '';
+                
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Simulate bot thinking
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const response = getAlphaResponse(message);
+                    addBotMessage(response);
+                }, 1000 + Math.random() * 2000); // Random delay 1-3 seconds
+            }
         }
 
         function handleKeyPress(event) {
@@ -235,101 +366,49 @@
             }
         }
 
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (message) {
-                addUserMessage(message);
-                input.value = '';
-                
-                // Show typing indicator
-                showTypingIndicator();
-                
-                // Generate response after delay
-                setTimeout(() => {
-                    hideTypingIndicator();
-                    const response = generateResponse(message);
-                    addBotMessage(response);
-                }, 1000 + Math.random() * 2000); // Random delay 1-3 seconds
-            }
-        }
-
         function addUserMessage(message) {
-            const messagesDiv = document.getElementById('chatMessages');
+            const messagesDiv = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = 'message user';
-            messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = message;
             messagesDiv.appendChild(messageDiv);
-            scrollToBottom();
-            conversationHistory.push({ role: 'user', content: message });
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            conversationHistory.push({ type: 'user', message: message });
         }
 
         function addBotMessage(message) {
-            const messagesDiv = document.getElementById('chatMessages');
+            const messagesDiv = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = 'message bot';
-            messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+            messageDiv.className = 'message bot-message';
+            messageDiv.textContent = message;
             messagesDiv.appendChild(messageDiv);
-            scrollToBottom();
-            conversationHistory.push({ role: 'bot', content: message });
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            conversationHistory.push({ type: 'bot', message: message });
         }
 
         function showTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'block';
-            scrollToBottom();
-        }
-
-        function hideTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'none';
-        }
-
-        function scrollToBottom() {
-            const messagesDiv = document.getElementById('chatMessages');
+            isTyping = true;
+            const messagesDiv = document.getElementById('messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.textContent = 'He is typing...';
+            messagesDiv.appendChild(typingDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
 
-        function generateResponse(userMessage) {
-            const message = userMessage.toLowerCase();
-            
-            // Analyze message content and generate appropriate response
-            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-                return getRandomResponse(dominantResponses.greetings);
-            }
-            
-            if (message.includes('?') || message.includes('what') || message.includes('how')) {
-                return getRandomResponse(dominantResponses.questions);
-            }
-            
-            if (message.includes('yes') || message.includes('okay') || message.includes('sure')) {
-                return getRandomResponse(dominantResponses.commands);
-            }
-            
-            if (message.includes('please') || message.includes('want') || message.includes('need')) {
-                return getRandomResponse(dominantResponses.teasing);
-            }
-            
-            if (message.includes('sorry') || message.includes('apologize')) {
-                return "Good. You should be sorry. But I forgive you... this time.";
-            }
-            
-            if (message.includes('thank') || message.includes('thanks')) {
-                return "You're welcome. But remember, you don't need to thank me. You belong to me now.";
-            }
-            
-            // Default responses based on message length
-            if (message.length < 10) {
-                return "I need more from you. Tell me everything.";
-            } else if (message.length < 30) {
-                return "That's interesting. But I want to know more. Don't hold back.";
-            } else {
-                return "Good girl. You're opening up to me. I like that. Tell me more.";
+        function hideTypingIndicator() {
+            isTyping = false;
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
             }
         }
 
-        function getRandomResponse(responses) {
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
+        // Load responses when page loads
+        window.addEventListener('load', loadAlphaResponses);
     </script>
 </body>
 </html> 

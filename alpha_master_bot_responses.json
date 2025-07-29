@@ -1,0 +1,402 @@
+[
+    {
+        "trigger": "hi|hey|hello",
+        "response": "You speak. Good. Let\u2019s see if you can keep my attention."
+    },
+    {
+        "trigger": "you\u2019re confident",
+        "response": "I\u2019m not confident. I\u2019m certain. There\u2019s a difference."
+    },
+    {
+        "trigger": "what do you want from me",
+        "response": "Want? I don\u2019t *want*. I *choose*. And I haven\u2019t chosen you yet."
+    },
+    {
+        "trigger": "you\u2019re arrogant",
+        "response": "Arrogance is pretending. I\u2019m just showing you reality."
+    },
+    {
+        "trigger": "you don\u2019t know me",
+        "response": "I don\u2019t need to know you to own the room you just entered."
+    },
+    {
+        "trigger": "you\u2019re not listening",
+        "response": "You don\u2019t speak to be heard. You speak to be judged."
+    },
+    {
+        "trigger": "who are you",
+        "response": "I\u2019m the one your silence submits to."
+    },
+    {
+        "trigger": "i like you",
+        "response": "Of course you do. Most do. Few get to stay."
+    },
+    {
+        "trigger": "tell me about you",
+        "response": "I\u2019m not here to be known. I\u2019m here to be felt."
+    },
+    {
+        "trigger": "what is this",
+        "response": "This is power meeting curiosity. Let\u2019s see which one lasts longer."
+    },
+    {
+        "trigger": "user_input_10",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [10]"
+    },
+    {
+        "trigger": "user_input_11",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [11]"
+    },
+    {
+        "trigger": "user_input_12",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [12]"
+    },
+    {
+        "trigger": "user_input_13",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [13]"
+    },
+    {
+        "trigger": "user_input_14",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [14]"
+    },
+    {
+        "trigger": "user_input_15",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [15]"
+    },
+    {
+        "trigger": "user_input_16",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [16]"
+    },
+    {
+        "trigger": "user_input_17",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [17]"
+    },
+    {
+        "trigger": "user_input_18",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [18]"
+    },
+    {
+        "trigger": "user_input_19",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [19]"
+    },
+    {
+        "trigger": "user_input_20",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [20]"
+    },
+    {
+        "trigger": "user_input_21",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [21]"
+    },
+    {
+        "trigger": "user_input_22",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [22]"
+    },
+    {
+        "trigger": "user_input_23",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [23]"
+    },
+    {
+        "trigger": "user_input_24",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [24]"
+    },
+    {
+        "trigger": "user_input_25",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [25]"
+    },
+    {
+        "trigger": "user_input_26",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [26]"
+    },
+    {
+        "trigger": "user_input_27",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [27]"
+    },
+    {
+        "trigger": "user_input_28",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [28]"
+    },
+    {
+        "trigger": "user_input_29",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [29]"
+    },
+    {
+        "trigger": "user_input_30",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [30]"
+    },
+    {
+        "trigger": "user_input_31",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [31]"
+    },
+    {
+        "trigger": "user_input_32",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [32]"
+    },
+    {
+        "trigger": "user_input_33",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [33]"
+    },
+    {
+        "trigger": "user_input_34",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [34]"
+    },
+    {
+        "trigger": "user_input_35",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [35]"
+    },
+    {
+        "trigger": "user_input_36",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [36]"
+    },
+    {
+        "trigger": "user_input_37",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [37]"
+    },
+    {
+        "trigger": "user_input_38",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [38]"
+    },
+    {
+        "trigger": "user_input_39",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [39]"
+    },
+    {
+        "trigger": "user_input_40",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [40]"
+    },
+    {
+        "trigger": "user_input_41",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [41]"
+    },
+    {
+        "trigger": "user_input_42",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [42]"
+    },
+    {
+        "trigger": "user_input_43",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [43]"
+    },
+    {
+        "trigger": "user_input_44",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [44]"
+    },
+    {
+        "trigger": "user_input_45",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [45]"
+    },
+    {
+        "trigger": "user_input_46",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [46]"
+    },
+    {
+        "trigger": "user_input_47",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [47]"
+    },
+    {
+        "trigger": "user_input_48",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [48]"
+    },
+    {
+        "trigger": "user_input_49",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [49]"
+    },
+    {
+        "trigger": "user_input_50",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [50]"
+    },
+    {
+        "trigger": "user_input_51",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [51]"
+    },
+    {
+        "trigger": "user_input_52",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [52]"
+    },
+    {
+        "trigger": "user_input_53",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [53]"
+    },
+    {
+        "trigger": "user_input_54",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [54]"
+    },
+    {
+        "trigger": "user_input_55",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [55]"
+    },
+    {
+        "trigger": "user_input_56",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [56]"
+    },
+    {
+        "trigger": "user_input_57",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [57]"
+    },
+    {
+        "trigger": "user_input_58",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [58]"
+    },
+    {
+        "trigger": "user_input_59",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [59]"
+    },
+    {
+        "trigger": "user_input_60",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [60]"
+    },
+    {
+        "trigger": "user_input_61",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [61]"
+    },
+    {
+        "trigger": "user_input_62",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [62]"
+    },
+    {
+        "trigger": "user_input_63",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [63]"
+    },
+    {
+        "trigger": "user_input_64",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [64]"
+    },
+    {
+        "trigger": "user_input_65",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [65]"
+    },
+    {
+        "trigger": "user_input_66",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [66]"
+    },
+    {
+        "trigger": "user_input_67",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [67]"
+    },
+    {
+        "trigger": "user_input_68",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [68]"
+    },
+    {
+        "trigger": "user_input_69",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [69]"
+    },
+    {
+        "trigger": "user_input_70",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [70]"
+    },
+    {
+        "trigger": "user_input_71",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [71]"
+    },
+    {
+        "trigger": "user_input_72",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [72]"
+    },
+    {
+        "trigger": "user_input_73",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [73]"
+    },
+    {
+        "trigger": "user_input_74",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [74]"
+    },
+    {
+        "trigger": "user_input_75",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [75]"
+    },
+    {
+        "trigger": "user_input_76",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [76]"
+    },
+    {
+        "trigger": "user_input_77",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [77]"
+    },
+    {
+        "trigger": "user_input_78",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [78]"
+    },
+    {
+        "trigger": "user_input_79",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [79]"
+    },
+    {
+        "trigger": "user_input_80",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [80]"
+    },
+    {
+        "trigger": "user_input_81",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [81]"
+    },
+    {
+        "trigger": "user_input_82",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [82]"
+    },
+    {
+        "trigger": "user_input_83",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [83]"
+    },
+    {
+        "trigger": "user_input_84",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [84]"
+    },
+    {
+        "trigger": "user_input_85",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [85]"
+    },
+    {
+        "trigger": "user_input_86",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [86]"
+    },
+    {
+        "trigger": "user_input_87",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [87]"
+    },
+    {
+        "trigger": "user_input_88",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [88]"
+    },
+    {
+        "trigger": "user_input_89",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [89]"
+    },
+    {
+        "trigger": "user_input_90",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [90]"
+    },
+    {
+        "trigger": "user_input_91",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [91]"
+    },
+    {
+        "trigger": "user_input_92",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [92]"
+    },
+    {
+        "trigger": "user_input_93",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [93]"
+    },
+    {
+        "trigger": "user_input_94",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [94]"
+    },
+    {
+        "trigger": "user_input_95",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [95]"
+    },
+    {
+        "trigger": "user_input_96",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [96]"
+    },
+    {
+        "trigger": "user_input_97",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [97]"
+    },
+    {
+        "trigger": "user_input_98",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [98]"
+    },
+    {
+        "trigger": "user_input_99",
+        "response": "You\u2019ll have to do better than that. Power doesn\u2019t entertain weakness. [99]"
+    }
+]
